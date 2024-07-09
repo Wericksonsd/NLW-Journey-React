@@ -1,4 +1,4 @@
-import {MapPin,Calendar,ArrowRight,Settings2, UserRoundPlus, X, AtSign, Plus} from 'lucide-react'
+import {MapPin,Calendar,ArrowRight,Settings2, UserRoundPlus, X, AtSign, Plus, User, Mail} from 'lucide-react'
 import {FormEvent, useState} from 'react'
 import './App.css'
 
@@ -6,6 +6,8 @@ export function App() {
 
   const [guestOpen, setGuestOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
+  const [modalTripOpen, setModalTripOpen] = useState(false)
+
   const [usersEmail, setUsersEmail] = useState([
     "werickson@gmail.com",
     "soneca@gmail.com",
@@ -19,6 +21,10 @@ export function App() {
   const modalOpenHandler = () => setModalOpen(true)
 
   const modalCloseHandler = () => setModalOpen(false)
+
+  const modalTripOpenHandler = () => setModalTripOpen(true)
+
+  const modalTripCloseHandler = () => setModalTripOpen(false)
 
   const addNewUserEmail = (event:FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -44,9 +50,11 @@ export function App() {
 
   const deleteUserEmail = (userRemoved: string) => {
     const remainUsers = usersEmail.filter(email => email !== userRemoved)
-
-    addNewUserEmail(remainUsers)
+  
+    setUsersEmail(remainUsers)
   }
+  
+  
 
   return (
       <div className='h-screen bg-backSquare bg-no-repeat bg-center flex items-center justify-center'>
@@ -83,10 +91,10 @@ export function App() {
                 
                 <button onClick={modalOpenHandler} type="button" className='bg-transparent flex-1 text-zinc-500 text-center flex items-center justify-start gap-2'>
                   <UserRoundPlus className='size-5'/>
-                  <span>Quem estará na viagem?</span>
+                  {usersEmail.length === 0 ? <span>Quem estará na viagem?</span> : <span>{usersEmail.length} pessoa(s) convidada(s)</span>}
                 </button>
                 <div className='bg-zinc-700/50 w-0.5 h-8'/>
-                <button className='bg-lime-500 font-semibold text-lime-900 px-4 py-2 rounded-lg flex items-center justify-center gap-1 hover:bg-lime-400'>Confirmar Viagem <ArrowRight className='size-5'/></button>
+                <button onClick={modalTripOpenHandler} className='bg-lime-500 font-semibold text-lime-900 px-4 py-2 rounded-lg flex items-center justify-center gap-1 hover:bg-lime-400'>Confirmar Viagem <ArrowRight className='size-5'/></button>
                   </div>
             }
           </div>
@@ -112,7 +120,7 @@ export function App() {
                     return (
                       <div key={email} className='p-2 bg-zinc-900 text-zinc-400 rounded-lg flex items-center justify-center gap-3'>
                         <span>{email}</span>
-                        <button onClick={() => (deleteUserEmail)}> <X className='size-4'/> </button>
+                        <button type="button" onClick={() => (deleteUserEmail(email))}> <X className='size-4'/> </button>
                       </div>
                   )})}
                 </div>
@@ -133,6 +141,51 @@ export function App() {
                     type='submit'
                     className='bg-lime-500 font-semibold text-lime-900 px-4 py-2 rounded-lg flex items-center justify-center gap-1 hover:bg-lime-400'>
                     Convidar
+                    <Plus className='size-5'/>
+                  </button>
+                </form>
+
+              </div>
+            </div>
+          )}
+
+          {modalTripOpen && (
+            <div className='fixed inset-0 bg-zinc-900/80 flex items-center justify-center'>
+              <div className='w-1/3 bg-zinc-800 p-5 rounded-xl shadow-shape'>
+
+                <div className='w-full flex items-center justify-between text-zinc-400'>
+                  <p className='text-xl'>Confirmar viagem</p>
+                  <X onClick={modalTripCloseHandler} className='size-5 hover:cursor-pointer'/>
+                </div>
+                <div className='my-4'/>
+
+                <p className='text-left text-sm'>Para concluir a criação da viagem para <span className='font-semibold'>Florianópolis</span>, Brasil nas datas de
+                                        <span className='font-semibold'> 16 a 27 de Agosto de 2024</span> preencha seus dados abaixo:</p>
+
+                <div className='my-4'/>
+
+                <form onSubmit={addNewUserEmail} className='space-y-2 flex flex-col items-center justify-center'>        
+                  <div className='h-12 w-full px-4 bg-zinc-900 text-zinc-500 rounded-lg flex items-center shadow-shape gap-2'>
+                    <User className='size-5 text-zinc-500'/>
+                    <input type="text"
+                    name='userConfirmar'
+                    placeholder='Seu nome completo'
+                    className='bg-transparent flex-1 placeholder-zinc-500 outline-none'/>
+                  </div>
+
+                  <div className='h-12 w-full px-4 bg-zinc-900 text-zinc-500 rounded-lg flex items-center shadow-shape gap-2'>
+                    <Mail className='size-5 text-zinc-500'/>
+                    <input type="email"
+                    name='emailConfirmar'
+                    placeholder='Seu e-mail pessoal'
+                    className='bg-transparent flex-1 placeholder-zinc-500 outline-none'/>
+                  </div>
+
+                  <button
+                    onClick={guestOpenHandler}
+                    type='submit'
+                    className='bg-lime-500 font-semibold text-lime-900 w-full py-2 rounded-lg flex items-center justify-center gap-1 hover:bg-lime-400'>
+                    Confirmar criação da viagem
                     <Plus className='size-5'/>
                   </button>
                 </form>
