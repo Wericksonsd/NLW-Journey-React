@@ -12,7 +12,7 @@ export default {
       },
       backgroundImage: {
         backSquare:
-        "url(./public/bg.png)"
+        "url(./bg.png)"
       },
     },
   },
