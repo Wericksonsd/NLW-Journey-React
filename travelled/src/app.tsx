@@ -51,7 +51,10 @@ export function App() {
   return (
       <div className='h-screen bg-backSquare bg-no-repeat bg-center flex items-center justify-center'>
         <div className="max-w-3xl w-full text-center px-6 space-y-10">
-          <p className='text-xl'>Convide seus amigos e planeje sua próxima viagem!</p>
+          <div className='flex flex-col items-center justify-center text-zinc-400 gap-3'>
+            <img src="/logo.svg" alt="Plann.er" />
+            <p className='text-xl'>Convide seus amigos e planeje sua próxima viagem!</p>
+          </div>
 
           <div className='space-y-4'>
             <div className='h-16 px-4  bg-zinc-800 text-zinc-400 rounded-xl flex items-center shadow-shape gap-2'>
