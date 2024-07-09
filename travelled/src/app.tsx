@@ -159,8 +159,8 @@ export function App() {
                 </div>
                 <div className='my-4'/>
 
-                <p className='text-left text-sm'>Para concluir a criação da viagem para <span className='font-semibold'>Florianópolis</span>, Brasil nas datas de
-                                        <span className='font-semibold'> 16 a 27 de Agosto de 2024</span> preencha seus dados abaixo:</p>
+                <p className='text-left text-sm'>Para concluir a criação da viagem para <span className='font-bold'>Florianópolis</span>, Brasil nas datas de
+                                        <span className='font-bold'> 16 a 27 de Agosto de 2024</span> preencha seus dados abaixo:</p>
 
                 <div className='my-4'/>
 
