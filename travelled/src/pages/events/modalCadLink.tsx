@@ -1,4 +1,5 @@
 import { Calendar, Tag, X } from "lucide-react"
+import {Button} from '../globals/button'
 
 interface ModalCadLinkProps {
     CloseModalCadLink: () => void
@@ -42,11 +43,7 @@ export const ModalCadLink = ({
                         className="bg-transparent placeholder-zinc-600 flex-1 outline-none"/>
                     </div>
 
-                    <button
-                    className="p-3 bg-lime-600 text-lime-950 rounded-md w-full flex items-center justify-center gap-2">
-                        <span className="text-xl font-semibold">Salvar atividade</span>
-                    </button>
-
+                    <Button/>
                 </form>
                         
             </div>

@@ -32,7 +32,7 @@ export const ModalCadAtv = ({
                             <div className="flex-grow h-14 rounded-md px-5 bg-zinc-900 shadow-shape flex items-center justify-center gap-2">
                                 <Calendar className="size-5 text-zinc-600"/>
                                 <input
-                                type="text"
+                                type="datetime-local"
                                 name="data"
                                 placeholder="Qual a data?"
                                 className="bg-transparent placeholder-zinc-600 flex-1 outline-none"/>
