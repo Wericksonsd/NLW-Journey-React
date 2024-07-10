@@ -1,14 +1,19 @@
 import { Calendar, MapPin, Settings2, Plus, CircleCheck, Link2, CircleDashed, UserCog, X, Tag, Clock } from "lucide-react"
 import { useState } from "react"
+import { ModalCadLink } from "./modalCadLink"
+import { ModalCadAtv } from "./modalCadAtv"
 
 export const Events = () => {
 
-    const [modalCadAtv, setModalCadAtv] = useState(false) 
+    const [modalCadAtv, setModalCadAtv] = useState(false)
+    const [modalCadLink, setModalCadLink] = useState(false)
+    
 
     const OpenModalCadAtv = () => setModalCadAtv(true)
-
     const CloseModalCadAtv = () => setModalCadAtv(false)
 
+    const OpenModalCadLink = () => setModalCadLink(true)
+    const CloseModalCadLink = () => setModalCadLink(false)
     return (
         <div className="w-screen h-screen">
             <div className="max-w-6xl px-6 py-10 mx-auto">
@@ -21,7 +26,7 @@ export const Events = () => {
                     <button type="button" title="AlterarLocal" className="bg-zinc-800 rounded-lg px-5 py-2 text-zinc-500 flex items-center justify-center gap-2">Alterar local/data <Settings2 className="text-zinc-500 size-5"/></button>
                 </div>
                 <div className="my-8"/>
-                <div className="w-full flex justify-center items-center px-6 space-x-12">
+                <div className="w-full flex justify-center items-start px-6 space-x-12">
                     <div className="flex-1 space-y-4">
                         <div className="w-full flex items-center justify-between">
                             <p className="text-3xl">Atividades</p>
@@ -77,7 +82,10 @@ export const Events = () => {
                                 </div>
                                 <Link2 className="size-5 "/>
                             </div>
-                            <button type="button" className="w-full py-4 rounded-lg bg-zinc-800 shadow-shape text-zinc-400 text-xl flex items-center justify-center gap-2">
+                            <button
+                            type="button"
+                            onClick={OpenModalCadLink}
+                            className="w-full py-4 rounded-lg bg-zinc-800 shadow-shape text-zinc-400 text-xl flex items-center justify-center gap-2">
                                 <Plus className="size-5"/> Cadastrar novo link
                             </button>
                             <div className="my-4 w-full h-0.5 bg-zinc-800/50"></div>
@@ -105,58 +113,16 @@ export const Events = () => {
             </div>
 
             {modalCadAtv && (
-                <div className="fixed inset-0 bg-zinc-800/90 flex items-center justify-center text-zinc-400">
-                    <div className="w-1/3 bg-zinc-800 shadow-shape rounded-md p-4 space-y-4">
-                        <div className="flex items-center justify-center">
-                            <span className="flex-1 text-lg">Cadastrar atividade</span>
-                            <button
-                            type="button"
-                            onClick={CloseModalCadAtv}>
-                                <X className="size-5"/>
-                            </button>
-                        </div>
-                        <span>Todos convidados podem visualizar as atividades.</span>
-                        <form className="flex items-center justify-center flex-wrap gap-4">
-                            <div className="w-full h-14 rounded-md px-5 bg-zinc-900 shadow-shape flex items-center justify-center gap-2">
-                                <Tag className="size-5 text-zinc-600"/>
-                                <input
-                                type="text"
-                                name="atividade"
-                                placeholder="Qual atividade?"
-                                className="bg-transparent placeholder-zinc-600 flex-1 outline-none"/>
-                            </div>
-
-                            <div className="flex-grow h-14 rounded-md px-5 bg-zinc-900 shadow-shape flex items-center justify-center gap-2">
-                                <Calendar className="size-5 text-zinc-600"/>
-                                <input
-                                type="text"
-                                name="data"
-                                placeholder="Qual a data?"
-                                className="bg-transparent placeholder-zinc-600 flex-1 outline-none"/>
-                            </div>
-                        
-                            <div className="h-14 rounded-md px-5 bg-zinc-900 shadow-shape flex items-center justify-center gap-2">
-                                <Clock className="size-5 text-zinc-600"/>
-                                <input
-                                type="text"
-                                name="horario"
-                                placeholder="Qual horário?"
-                                className="bg-transparent placeholder-zinc-600 flex-1 outline-none"/>
-                            </div>
-
-                            <button
-                            className="p-3 bg-lime-600 text-lime-950 rounded-md flex-grow flex items-center justify-center gap-2">
-                                <span className="text-xl font-semibold">Salvar atividade</span>
-                            </button>
-
-                        </form>
-                        
-                
-                            
-
-                    </div>
-                </div>
+                <ModalCadAtv
+                    CloseModalCadAtv={CloseModalCadAtv}
+                />
             )}
+
+            {modalCadLink && (
+                <ModalCadLink
+                    CloseModalCadLink={CloseModalCadLink}
+                />
+            )}  
         </div>
         
     )
