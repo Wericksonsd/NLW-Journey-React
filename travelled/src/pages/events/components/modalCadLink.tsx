@@ -1,5 +1,5 @@
 import { Calendar, Tag, X } from "lucide-react"
-import {Button} from '../globals/button'
+import {Button} from '../../globals/button'
 
 interface ModalCadLinkProps {
     CloseModalCadLink: () => void
@@ -15,11 +15,9 @@ export const ModalCadLink = ({
             <div className="w-1/3 bg-zinc-800 shadow-shape rounded-md p-4 space-y-4">
                 <div className="flex items-center justify-center">
                     <span className="flex-1 text-lg">Cadastrar link</span>
-                    <button
-                    type="button"
-                    onClick={CloseModalCadLink}>
-                        <X className="size-5"/>
-                    </button>
+                    <Button onClick={CloseModalCadLink} collor="none" size="none">
+                        <X className="size-5 text-zinc-400"/>
+                    </Button>
                 </div>
 
                 <span>Todos convidados podem visualizar os links importantes.</span>
@@ -43,7 +41,9 @@ export const ModalCadLink = ({
                         className="bg-transparent placeholder-zinc-600 flex-1 outline-none"/>
                     </div>
 
-                    <Button/>
+                    <Button collor="primary" size="full">
+                        <span className="text-xl font-semibold">Salvar atividade</span>
+                    </Button>
                 </form>
                         
             </div>
